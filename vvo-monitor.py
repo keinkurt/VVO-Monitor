@@ -5,7 +5,7 @@ from colorama import Back, Style, init
 import requests
 from tabulate import tabulate
 
-init()
+init(strip=False)
 
 query_baseurl = 'http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do'
 parser = argparse.ArgumentParser()
