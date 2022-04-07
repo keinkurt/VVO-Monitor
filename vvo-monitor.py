@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-from colorama import Back, Style, init
+from colorama import Fore, Back, Style, init
 
 import requests
 from tabulate import tabulate
@@ -34,12 +34,12 @@ if response.status_code == 200:
         for i in range(len(hst_object)):
             if hst_object[i][1] in args.mark:
                 for k in range(len(hst_object[i])):
-                    if hst_object[i][2] in ['', '1']:
-                        hst_object[i][k] = f"{Back.LIGHTGREEN_EX}{hst_object[i][k]}{Style.RESET_ALL}"
-                    elif hst_object[i][2] in ['2', '3', '4', '5']:
-                        hst_object[i][k] = f"{Back.YELLOW}{hst_object[i][k]}{Style.RESET_ALL}"
+                    if hst_object[i][2] in ['', '1', '2', '3', '4', '5']:
+                        hst_object[i][k] = f"{Back.GREEN}{Fore.BLACK}{hst_object[i][k]}{Style.RESET_ALL}"
+                    elif hst_object[i][2] in ['6', '7', '8', '9', '10']:
+                        hst_object[i][k] = f"{Back.YELLOW}{Fore.BLACK}{hst_object[i][k]}{Style.RESET_ALL}"
                     else:
-                        hst_object[i][k] = f"{Back.MAGENTA}{hst_object[i][k]}{Style.RESET_ALL}"
+                        hst_object[i][k] = f"{Back.RED}{Fore.BLACK}{hst_object[i][k]}{Style.RESET_ALL}"
 
     print(tabulate(hst_object, headers=["Line", "Destination", "Time"], tablefmt='fancy_grid'))
 else:
