@@ -41,6 +41,6 @@ if response.status_code == 200:
                     else:
                         hst_object[i][k] = f"{Back.RED}{Fore.BLACK}{hst_object[i][k]}{Style.RESET_ALL}"
 
-    print(tabulate(hst_object, headers=["Line", "Destination", "Time"], tablefmt='fancy_grid'))
+    print(tabulate(hst_object, headers=["Line", "Destination", "Time"], tablefmt='fancy_grid', maxcolwidths=[None, 15, None]))
 else:
     print(f"Something went wrong: {response.reason} ({response.status_code})")
