@@ -5,6 +5,8 @@ from colorama import Fore, Back, Style, init
 import requests
 from tabulate import tabulate
 
+from datetime import datetime
+
 init(strip=False)
 
 query_baseurl = 'http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do'
@@ -32,7 +34,13 @@ if response.status_code == 200:
 
     if args.mark is not None:
         for i in range(len(hst_object)):
-            if hst_object[i][1] in args.mark:
+            now = datetime.now()
+            try:
+                minute = now.minute + int(hst_object[i][2])
+            except:
+                minute = now.minute
+
+            if hst_object[i][1] in args.mark and now.hour == 7 and minute > 24 and minute < 45:
                 for k in range(len(hst_object[i])):
                     if hst_object[i][2] in ['', '1', '2', '3', '4', '5']:
                         hst_object[i][k] = f"{Back.GREEN}{Fore.BLACK}{hst_object[i][k]}{Style.RESET_ALL}"
